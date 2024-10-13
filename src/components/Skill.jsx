@@ -47,7 +47,7 @@ const Skill = () => {
     return (
         <section className="section">
             <div className="container">
-                <h2 className="headline-2">
+                <h2 className="headline-2 ">
                     Essential Tools I use
                 </h2>
                 <p className="">
