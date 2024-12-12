@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: <portfolio-srh.local  # Replace with your domain
+  - host: portfolio-srh.local  # Replace with your domain
     http:
       paths:
       - path: /
