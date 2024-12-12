@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: portfolio-srh-service
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 80
     targetPort: 80
+    nodePort: 30008
   selector:
     app: portfolio-srh
