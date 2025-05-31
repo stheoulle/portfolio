@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: portfolio-srh
-        image: sarahth/portfolio-srh:latest
+        image: sarahth/portfolio-srh:0.0.5
         ports:
         - containerPort: 80
 
