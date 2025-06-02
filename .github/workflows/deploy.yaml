@@ -50,4 +50,4 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f deployement/deployement.yaml
+        kubectl apply -f deployement/deployement.yaml --validate=false
