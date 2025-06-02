@@ -40,12 +40,14 @@ jobs:
       run: |
         docker push sarahth/portfolio-srh:latest
 
-    # Déployer sur Kubernetes
+    - name: Configure kubectl
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
+      run: |
+        mkdir -p ~/.kube
+        echo $KUBE_CONFIG | base64 --decode > ~/.kube/config
+        cat ~/.kube/config
+
     - name: Deploy to Kubernetes
-      uses: appleboy/ssh-action@v0.1.4
-      with:
-        host: ${{ secrets.KUBE_HOST }}
-        username: ${{ secrets.KUBE_USER }}
-        key: ${{ secrets.KUBE_KEY }}
-        script: |
-          kubectl apply -f ../deployement/deployment.yaml
+      run: |
+        kubectl apply -f deployement/deployment.yaml
