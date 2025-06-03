@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {ReactLenis} from "lenis/react";
-
-
+import { ReactLenis } from "lenis/react";
 
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -24,10 +22,9 @@ import Work from "./components/Work";
 import Photography from "./components/Photography";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import TimestampButton from "./components/TimestampButton";
 
 const App = () => {
-
-    
   return (
     <ReactLenis root>
       <Header />
@@ -35,11 +32,12 @@ const App = () => {
         <Hero />
         <About />
         <Skill />
+        <TimestampButton />
         <Work />
-        <Photography/>
+        <Photography />
         <Contact />
       </main>
-        <Footer />
+      <Footer />
     </ReactLenis>
   );
 };
