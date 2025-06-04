@@ -22,9 +22,25 @@ jobs:
       - name: Install Snyk
         run: npm install -g snyk
 
-      # Exécuter Snyk pour vérifier les vulnérabilités fu code
-      - name: Run Snyk to check for vulnerabilities
+      # Exécuter Snyk pour vérifier les vulnérabilités Open Source
+      - name: Run Snyk Open Source
         run: snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      # Exécuter Snyk Code pour vérifier les vulnérabilités dans le code
+      - name: Run Snyk Code
+        run: snyk code test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      # Builder l'image Docker pour le test de conteneur
+      - name: Build Docker Image
+        run: docker build -t my-react-app:latest .
+
+      # Exécuter Snyk Container pour vérifier les vulnérabilités dans l'image Docker
+      - name: Run Snyk Container
+        run: snyk container test my-react-app:latest
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
