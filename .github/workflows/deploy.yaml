@@ -1,9 +1,35 @@
-name: Build and push
+name: Build, Test, and Push
+
 on:
   push:
 
 jobs:
+  security-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout le code source
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Configurer Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      # Installer Snyk
+      - name: Install Snyk
+        run: npm install -g snyk
+
+      # Exécuter Snyk pour vérifier les vulnérabilités
+      - name: Run Snyk to check for vulnerabilities
+        run: snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
   build-and-deploy:
+    needs: security-test
     runs-on: ubuntu-latest
 
     steps:
@@ -48,6 +74,7 @@ jobs:
           echo $KUBE_CONFIG | base64 --decode > ~/.kube/config
           cat ~/.kube/config
 
-    # - name: Deploy to Kubernetes
-    #   run: |
-    #     kubectl apply -f deployement/deployement.yaml --validate=false
+      # Déployer sur Kubernetes
+      # - name: Deploy to Kubernetes
+      #   run: |
+      #     kubectl apply -f deployement/deployement.yaml --validate=false
