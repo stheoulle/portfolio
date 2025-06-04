@@ -22,7 +22,7 @@ jobs:
       - name: Install Snyk
         run: npm install -g snyk
 
-      # Exécuter Snyk pour vérifier les vulnérabilités
+      # Exécuter Snyk pour vérifier les vulnérabilités fu code
       - name: Run Snyk to check for vulnerabilities
         run: snyk test
         env:
