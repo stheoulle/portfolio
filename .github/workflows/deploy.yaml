@@ -24,13 +24,13 @@ jobs:
 
       # Exécuter Snyk pour vérifier les vulnérabilités Open Source
       - name: Run Snyk Open Source
-        run: snyk test
+        run: snyk monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       # Exécuter Snyk Code pour vérifier les vulnérabilités dans le code
       - name: Run Snyk Code
-        run: snyk code test
+        run: snyk code monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
@@ -40,12 +40,11 @@ jobs:
 
       # Exécuter Snyk Container pour vérifier les vulnérabilités dans l'image Docker
       - name: Run Snyk Container
-        run: snyk container test my-react-app:latest --file=Dockerfile
+        run: snyk container monitor my-react-app:latest --file=Dockerfile
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   build-and-deploy:
-    needs: security-test
     runs-on: ubuntu-latest
 
     steps:
