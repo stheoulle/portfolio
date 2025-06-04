@@ -1,5 +1,5 @@
 #Utiliser une image pour servir les fichiers statiques
-FROM nginx:alpine
+FROM nginx:1.28.0-alpine3.21-slim 
 
 #Copier les fichiers de build dans le dossier par défaut de Nginx
 COPY dist/ /usr/share/nginx/html
