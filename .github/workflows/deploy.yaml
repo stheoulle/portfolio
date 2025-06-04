@@ -40,7 +40,7 @@ jobs:
 
       # Exécuter Snyk Container pour vérifier les vulnérabilités dans l'image Docker
       - name: Run Snyk Container
-        run: snyk container test my-react-app:latest
+        run: snyk container test my-react-app:latest --file=Dockerfile
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
